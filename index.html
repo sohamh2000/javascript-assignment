@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="myscripts.js"></script>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+    </style>
+    <script>
+        var i=0;
+var images = ['red.jpg','yellow.jpg','blue.jpg','green.jpg','orange.jpg','white.jpg'];
+function change(){
+    var x = document.getElementById("time").value;
+            document.getElementById("demo").src = images[i];
+            if (i < images.length - 1 &&  x > 0) {
+                i++;
+            } else {
+                i = 0;
+            }
+            setTimeout("change()", x);
+}
+function cal(si){
+    var f=document.getElementById("first").value;
+    var s=document.getElementById("second").value;
+    if(isNaN(f) || isNaN(s)){
+        document.getElementById("val").value="Invalid";
+    }
+    else{
+        if(si=="+"){
+            document.getElementById("val").value=parseInt(s)+parseInt(f);
+        }
+        else if(si=="-"){
+            document.getElementById("val").value=parseInt(s)-parseInt(f);
+        }
+        else if(si=="/"){
+            document.getElementById("val").value=parseInt(s)/parseInt(f);
+        }
+        else{
+            document.getElementById("val").value=parseInt(s)*parseInt(f);
+        }
+    }
+
+}
+function myFunction() {
+  var x = document.getElementById("myInput").value;
+  var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (x.match(emailPattern)) {
+    document.getElementById("myInput").style.backgroundColor = "green";    
+  }
+  else{
+    document.getElementById("myInput").style.backgroundColor = "red";
+  }
+}
+    </script>
+</head>
+<body>
+    <table style="width:100%">
+        <tr>
+            <td>
+                <input type="number"   id="time" value="1000">
+                <button  onclick="change()">Submit</button>
+            </td>
+            <td><img name='slide' src="red.jpg" style="max-width: 200px; max-height: auto;" id="demo"></td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" id="first">
+              <input type="text" id="second">
+              <input type="button" onclick="cal('+')" value="Addition">
+              <input type="button" onclick="cal('-')" value="Subtraction">
+              <input type="button" onclick="cal('/')" value="Division">
+              <input type="button" onclick="cal('*')" value="Multiplication">
+            </td>
+            <td><input id="val"></td>
+          </tr>
+          <tr>
+            <td><input type="text" id="myInput" oninput="myFunction()"></td>
+          </tr>
+    </table>
+</body>
+</html>
